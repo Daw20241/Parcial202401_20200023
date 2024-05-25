@@ -16,6 +16,7 @@ public partial class Parcial20240120200023Context : DbContext
     }
 
     public virtual DbSet<Movie> Movie { get; set; }
+    public virtual DbSet<Director> Director { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -36,6 +37,22 @@ public partial class Parcial20240120200023Context : DbContext
                 .IsFixedLength();
             entity.Property(e => e.Title)
                 .HasMaxLength(20)
+                .IsFixedLength();
+        });
+
+        modelBuilder.Entity<Director>(entity =>
+        {
+            entity.Property(e => e.Id)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.FullName)
+                .HasMaxLength(20)
+                .IsFixedLength();
+            entity.Property(e => e.Country)
+                .HasMaxLength(10)
+                .IsFixedLength();
+            entity.Property(e => e.Biografy)
+                .HasMaxLength(50)
                 .IsFixedLength();
         });
 
